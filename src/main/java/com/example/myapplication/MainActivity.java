@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button start;
     Button stop;
-    JSONArray runway;
+    JSONArray runway;                              //To store the runway information that is received from api
 
 
     @Override
@@ -44,14 +44,15 @@ public class MainActivity extends AppCompatActivity {
         start = (Button) findViewById(R.id.button);
         stop = (Button) findViewById(R.id.button2);
 
-        if(!runtimePermission()){
+        if(!runtimePermission()){                  //The condition in if checks if the permission is granted or not, if the permission is granted than the buttons are enabled
+                                                   //If the permission is not granted than
 
-            enableButtons();
+            enableButtons();                       //Enable START and STOP button to perform their functions i.e. make them clickable
         }
     }
 
 
-    private boolean runtimePermission(){
+    private boolean runtimePermission(){           //This functions checks as well as asks for permission(if not permitted) for access of both Coarse and fine location from gps
 
         if(Build.VERSION.SDK_INT >=23 && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION)
