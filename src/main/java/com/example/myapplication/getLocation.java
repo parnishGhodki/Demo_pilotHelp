@@ -27,12 +27,17 @@ public  class getLocation extends Service {
 
 
 
-    LocationManager locationManager;
-    LocationListener locationListener;
-    ArrayList<Location> gps = new ArrayList<Location>();
-    ArrayList<Long> speed = new ArrayList<Long>();
-    ArrayList<Double> Distance = new ArrayList<Double>();
-    ArrayList<Long> Time = new ArrayList<Long>();
+    LocationManager locationManager;            //LocationManager is a class which provides access to system location services -- locationManager object is created of this class
+    LocationListener locationListener;          //LocationListener is a class used for receiving notifications from the LocationManager when the location is changed -- locationListener object is created of this class
+    
+
+    ArrayList<Location> gps = new ArrayList<Location>();        //To store the location
+    ArrayList<Long> speed = new ArrayList<Long>();          //To store the speed
+    ArrayList<Double> Distance = new ArrayList<Double>();     //To store the distance between two consecutive readings
+    ArrayList<Long> Time = new ArrayList<Long>();           //To store the time duration between two consecutive readings
+
+
+
     Location previousLocation ;
     long currentTime = 0;
     long lastUpdatedTime = 0;
