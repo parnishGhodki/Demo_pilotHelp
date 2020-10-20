@@ -38,7 +38,7 @@ public  class getLocation extends Service {
 
 
 
-    Location previousLocation ;
+    Location previousLocation ;                         //These variables are for calculating distance between two consecutive readings, speed and time interval between two consecutive readings
     long currentTime = 0;
     long lastUpdatedTime = 0;
     double distance = 0;
@@ -55,13 +55,14 @@ public  class getLocation extends Service {
 
     @SuppressLint("MissingPermission")
     @Override
-    public void onCreate() {
+    public void onCreate() {                                                                 //This function is called when the activity is created
         super.onCreate();
 
 
-        locationListener = new LocationListener() {
+        locationListener = new LocationListener() {                                         //These are methods of LocationListener class which are called automatically when certain things happen in device location
+
             @Override
-            public void onLocationChanged(Location location) {
+            public void onLocationChanged(Location location) {                              //This method is called when there is a change in device location and it will store the location and also calculate speed, distance and time between two consecutive readings
 
                 gps.add(location);
                 currentTime = System.currentTimeMillis();
@@ -91,7 +92,7 @@ public  class getLocation extends Service {
             }
 
             @Override
-            public void onProviderDisabled(String provider) {
+            public void onProviderDisabled(String provider) {                                      //This method  is called when gps is turned off, it will direct the user to the Settings page for turning on the gps
 
                 Intent i = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -100,7 +101,7 @@ public  class getLocation extends Service {
             }
         };
         locationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 0, locationListener);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 0, locationListener);         //Setting up locationManager to request location updates and directing it to locationListener
     }
 
     @Override
